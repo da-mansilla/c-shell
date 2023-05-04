@@ -2,13 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main (int arg, char **argv){
-    char *prompt = "[My Shell] $";
+int main (int argc, char **argv){
+    char *prompt = "[My Shell] $ ";
     char *lineptr;
     size_t n = 0;
 
-    printf("%s\n",prompt);
+    (void)argc;(void)argv;
+
+    printf("%s",prompt);
     getline(&lineptr, &n, stdin);
+    printf("%s", lineptr);
 
     free(lineptr);
     return 0;
