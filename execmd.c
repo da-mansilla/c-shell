@@ -1,13 +1,17 @@
+#include "main.h"
 #include <stdio.h>
 #include <unistd.h>
 
-void execmd(char **argv){
+void execmd(char **argv) {
+  if (argv) {
     char *command = NULL;
-    if(argv){
-        command = argv[0];
-        if (execve(command,argv,NULL) == -1){
-            perror("Error.");
-        }
-    }
-}
+    char *actual_command;
 
+    command = argv[0];
+    actual_command = get_location(command);
+
+    if (execve(actual_command, argv, NULL) == -1) {
+      perror("Error.");
+    }
+  }
+}
